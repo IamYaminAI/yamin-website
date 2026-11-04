@@ -1,0 +1,221 @@
+/* No PrimeReact theme: components run unstyled and wrappers in
+   src/components/ui style them with these tokens. */
+@import "tailwindcss";
+
+/* Brand tokens. Font variables are set by next/font in the root layout. */
+@theme inline {
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --font-display:
+    var(--font-bricolage), var(--font-hanken), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@theme {
+  --color-night: #0b0e1f;
+  --color-ink: #12162c;
+  --color-ink-raised: #2a3266;
+  --color-text: #17213f;
+  --color-slate: #3e4560;
+  --color-muted: #555a6e;
+  --color-gold: #c9a86a;
+  --color-gold-light: #e2c88e;
+  --color-gold-deep: #aa8a52;
+  --color-bronze: #7a5f2e;
+  --color-cream: #eee5d2;
+  --color-ivory: #f5efe0;
+  --color-parchment: #f7f3ea;
+  --color-paper: #f8f8f5;
+  --color-mist: #f2f2ee;
+  --color-stone: #dadad3;
+  --color-line: #e4e4de;
+  --color-sand: #ddd3be;
+  --color-error: #f0b4a8;
+  --color-bronze-muted: #8a7448;
+
+  --breakpoint-xs: 35rem;
+  --breakpoint-tablet: 56.25rem;
+
+  --ease-cinematic: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* The design never sets a default line height; text uses the font's normal. */
+  --text-xs--line-height: normal;
+  --text-sm--line-height: normal;
+  --text-base--line-height: normal;
+  --text-lg--line-height: normal;
+  --text-xl--line-height: normal;
+  --color-skeleton: #edede8;
+
+  /* Animations (used as `animate-*`). Pair each with `motion-reduce:animate-none`. */
+  --animate-rise: rise 1.1s var(--ease-cinematic) forwards;
+  --animate-pop: pop 1s var(--ease-cinematic) forwards;
+  --animate-breathe: breathe 6s ease-in-out infinite;
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+  --animate-typing: typing 1.2s ease-in-out infinite;
+  --animate-scan: scan 3.2s cubic-bezier(0.5, 0, 0.5, 1) infinite alternate;
+  --animate-blink: blink 2.2s ease-in-out infinite;
+  --animate-highlight: highlight 6s ease infinite;
+  --animate-draw: draw 5s ease-in-out infinite;
+
+  /* rise/pop elements start at opacity 0 (set on the element) until their delay ends. */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(60%);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(18px) scale(0.92);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes breathe {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.08);
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: -260px 0;
+    }
+    to {
+      background-position: 260px 0;
+    }
+  }
+  @keyframes typing {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.4;
+    }
+    50% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
+  @keyframes scan {
+    from {
+      transform: translateY(-20%);
+    }
+    to {
+      transform: translateY(420%);
+    }
+  }
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 0.25;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes highlight {
+    0%,
+    14% {
+      box-shadow:
+        0 0 0 2px var(--color-gold),
+        0 10px 24px rgb(170 138 82 / 0.3);
+      transform: scale(1.05);
+    }
+    18%,
+    100% {
+      box-shadow: none;
+      transform: none;
+    }
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 700;
+    }
+    60%,
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  line-height: normal;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Heavy grotesk used for every headline. */
+@utility text-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+/* Italic serif accent inside display headlines. */
+@utility text-accent-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Small uppercase mono labels (eyebrows, chips, captions). */
+@utility text-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@utility bg-dots-cream {
+  background-image: radial-gradient(
+    rgb(238 229 210 / 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+}
+
+@utility bg-dots-ink {
+  background-image: radial-gradient(rgb(18 22 44 / 0.08) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Sticky stage for scroll-pinned scenes; --vh is set by ScrollScenes. */
+@utility scene-pin {
+  position: sticky;
+  top: 0;
+  height: var(--vh, 100svh);
+  overflow: hidden;
+}
