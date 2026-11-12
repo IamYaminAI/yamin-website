@@ -32,8 +32,19 @@ export const footerLinks: readonly NavLink[] = publicPages
   .filter(({ path }) => path !== "/")
   .map(({ path, label }) => ({ href: path, label }));
 
+/**
+ * Vercel exposes host names (no protocol) at build and run time. The project's
+ * production domain is preferred so preview builds still point canonical URLs
+ * at production; the per-deployment host is the last resort.
+ */
+function getVercelOrigin(): string | undefined {
+  const host =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  return host ? `https://${host}` : undefined;
+}
+
 export function getSiteUrl(): URL {
-  const value = process.env.SITE_URL;
+  const value = process.env.SITE_URL || getVercelOrigin();
 
   if (!value) {
     if (process.env.NODE_ENV === "production") {

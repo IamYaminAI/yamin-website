@@ -34,6 +34,6 @@ npm run build
 npm run format:check
 ```
 
-Copy `.env.example` to `.env.local` if you want to customize public configuration. `NEXT_PUBLIC_SITE_NAME` is optional and validated by `src/lib/env.ts`. Set `SITE_URL` to the deployed website origin (for example, `https://www.your-domain.com`) before a production build. Local development defaults to `http://localhost:3000`.
+Copy `.env.example` to `.env.local` if you want to customize public configuration. `NEXT_PUBLIC_SITE_NAME` is optional and validated by `src/lib/env.ts`. Set `SITE_URL` to the deployed website origin (for example, `https://www.your-domain.com`) before a production build. On Vercel it is optional: when unset, the project's production domain (`VERCEL_PROJECT_PRODUCTION_URL`, falling back to `VERCEL_URL`) is used. Set it once you attach a custom domain. Local development defaults to `http://localhost:3000`.
 
 Use Node.js 22 LTS or 24 LTS for supported tooling engines.

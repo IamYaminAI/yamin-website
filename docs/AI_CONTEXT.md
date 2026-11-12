@@ -53,7 +53,7 @@ The design reference for the home page was a static "cinematic" mockup; it is re
 
 `src/lib/site.ts` is the shared public page list used by the XML and HTML sitemaps. When adding, removing, or renaming a public page, update that list, its page metadata, navigation as appropriate, and tests. The HTML sitemap is linked from the footer.
 
-`SITE_URL` must be set to the **public origin** for production builds, such as `https://www.your-domain.com`, without a path. It supplies absolute sitemap URLs, the robots sitemap reference, and canonical/Open Graph URLs through `metadataBase`. No production domain is stored in this repository. In local development and tests, `getSiteUrl()` defaults to `http://localhost:3000`. `NEXT_PUBLIC_SITE_NAME` is optional and defaults to `Yamin`. See `.env.example` and `src/lib/env.ts`.
+`SITE_URL` must be set to the **public origin** for production builds, such as `https://www.your-domain.com`, without a path. It supplies absolute sitemap URLs, the robots sitemap reference, and canonical/Open Graph URLs through `metadataBase`. No production domain is stored in this repository. On Vercel, when `SITE_URL` is unset, `getSiteUrl()` falls back to `https://$VERCEL_PROJECT_PRODUCTION_URL`, then `https://$VERCEL_URL`. In local development and tests, `getSiteUrl()` defaults to `http://localhost:3000`. `NEXT_PUBLIC_SITE_NAME` is optional and defaults to `Yamin`. See `.env.example` and `src/lib/env.ts`.
 
 Favicons follow the file conventions in `src/app`: `favicon.ico` (16/32/48px), `icon.svg`, and `apple-icon.png` (180px on the navy background), all drawn from the logo mark (the gold disc and cream dot in `public/brand/*.svg`). `next.config.ts` disables the `X-Powered-By: Next.js` header and the dev-mode route badge.
 
